@@ -9,6 +9,7 @@ const AddFicheTenueCompte = () => {
         compte_bancaire_num : '' 
    });
   const [ imagedata , setImagedata] =  useState(''); 
+  const [imagePreview, setImagePreview] = useState('');
    // End states 
 
     const handleInput = (e) => {
@@ -18,8 +19,7 @@ const AddFicheTenueCompte = () => {
     }
     
     const handleImage = (file) => {
-        setImagedata(file[0]);
-        
+        setImagedata(file[0]);  
     }
 
 
@@ -68,8 +68,8 @@ const AddFicheTenueCompte = () => {
                      <form onSubmit={submitFicheTenue} >          
                             
                             <input className="input" type="text" onChange={handleInput} value={ficheTenueInput.compte_bancaire_num} placeholder="Compte Bancaire N°" name="compte_bancaire_num" />
-                            <input className="input" name="uploadImageFicheTenue" type="file" onChange={(e) => handleImage(e.target.files)} /> 
-                           
+                            <input className="input" name="uploadImageFicheTenue" type="file" onChange={(e) => { handleImage(e.target.files) ;  setImagePreview(URL.createObjectURL(e.target.files[0])); }} /> 
+                            <img src={imagePreview} alt=""  />
                             <input type="submit" value="Ajouter Cette Fiche" />
                      </form>
                   </div>
