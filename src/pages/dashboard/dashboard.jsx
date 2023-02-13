@@ -26,7 +26,7 @@ export default function Dashboard() {
                         </div>
                         <img src="imgs/avatar.png" alt="" className="avatar" />
                         <div className="body txt-c d-flex p-20 mt-20 mb-20 block-mobile">
-                            <div>Osama Elzero <span className="d-block c-grey fs-14 mt-10">Developer</span></div>
+                            <div>Yazid Dev <span className="d-block c-grey fs-14 mt-10">Developer</span></div>
                             <div>80 <span className="d-block c-grey fs-14 mt-10">Projects</span></div>
                             <div>$8500 <span className="d-block c-grey fs-14 mt-10">Earned</span></div>
                         </div>
