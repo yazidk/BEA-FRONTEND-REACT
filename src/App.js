@@ -6,8 +6,10 @@ import Login from "./pages/login/Login";
 import axios from "axios";
 
 axios.defaults.baseURL = "http://localhost:8000/";
+/*
 axios.defaults.headers.post['Content-Type'] =  'application/json';
 axios.defaults.headers.post['Accept'] = 'application/json';
+ */
 axios.defaults.withCredentials = true;
 
 axios.interceptors.request.use(function (config) {
@@ -33,8 +35,26 @@ function App() {
                       )
                       }
                 />
-                <Route path="/" element={<Dashboard />} /> 
-                <Route path="/ajouter-fiche" element={<AddFicheTenueCompte />} />
+                <Route path="/" element={
+                                localStorage.getItem('auth_token') ?(
+                                 <Dashboard />
+                           
+                              ) : (
+                                 <Navigate  to={"/login"} />
+                              )
+                      } 
+                      /> 
+                <Route  path="/ajouter-fiche" element={
+                         localStorage.getItem('auth_token') ? (
+                            <AddFicheTenueCompte /> 
+                     
+                        ) : (
+                           <Navigate  to={"/login"} />
+                        )
+                      
+                       
+                       
+                       } />
                     
 
                 
