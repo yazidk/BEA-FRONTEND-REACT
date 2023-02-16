@@ -37,6 +37,8 @@ const AddFicheTenueCompte = () => {
         formData.append('compte_bancaire_num', ficheTenueInput.compte_bancaire_num);
         formData.append('uploadImageFicheTenue', imagedata);
         try {
+
+            await axios.post('/api/ajouter-fiche', formData).then(res => {
                 if (res.data.status === 200) {
                     swal('Success', res.data.message, "success");
                     setFicheTenue({
