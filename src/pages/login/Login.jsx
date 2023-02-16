@@ -25,7 +25,7 @@ export default function Login() {
       password :  loginInput.password ,
      }
 
-     axios.get('/sanctum/csrf-cookie').then(response => {
+     /* axios.get('/sanctum/csrf-cookie').then(response => { */
       axios.post('/api/login' , data ).then( res => {
          
           if(res.data.status === 200) {
@@ -34,8 +34,6 @@ export default function Login() {
                   localStorage.setItem('auth_name' , res.data.username);
                   navigate("/ajouter-fiche");
                   swal("Success" , res.data.message , "success");
-                 
-                     
           }
          
           
@@ -44,7 +42,7 @@ export default function Login() {
           }
       });
 
- });
+ /* }); */
 
 
   }

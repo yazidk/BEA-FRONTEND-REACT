@@ -20,6 +20,12 @@ export default function Sidebar() {
                     </Link>
                 </li>
                 <li>
+                    <Link className="d-flex align-center fs-14 c-black rad-6 p-10" to={'/search-fiche-compte'}>
+                        <i className="fa-regular fa-file fa-fw"></i>
+                        <span>Rechercher Fiche</span>
+                    </Link>
+                </li>
+                <li>
                     <a className="d-flex align-center fs-14 c-black rad-6 p-10" href="settings.html">
                         <i className="fa-solid fa-gear fa-fw"></i>
                         <span>Paramatres</span>
