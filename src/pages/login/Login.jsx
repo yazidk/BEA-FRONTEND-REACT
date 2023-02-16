@@ -25,7 +25,7 @@ export default function Login() {
       password :  loginInput.password ,
      }
 
-     axios.get('/sanctum/csrf-cookie').then(response => {
+     /* axios.get('/sanctum/csrf-cookie').then(response => { */
       axios.post('/api/login' , data ).then( res => {
          
           if(res.data.status === 200) {
@@ -36,7 +36,7 @@ export default function Login() {
                   
                   swal("Success" , res.data.message , "success");
                  
-                      navigate('/ajouter-fiche');
+                      navigate('/');
           }
          
           
@@ -45,7 +45,7 @@ export default function Login() {
           }
       });
 
- });
+ /* }); */
 
 
   }
