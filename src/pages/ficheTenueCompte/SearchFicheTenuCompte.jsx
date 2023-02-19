@@ -1,21 +1,32 @@
-import React , {useState} from "react";
+import React , {useEffect, useState} from "react";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Head from "../../components/head/Head";
-import { getSuggestedQuery } from "@testing-library/react";
+import axios from "axios";
+
 function SearchFicheTenuCompte () {
      
-    const [data , setData] = useState([]);
+   
+    const [ficheComptes , setFicheComptes] = useState([]);
+    const [searchFicheComptes , setSearchFicheComptes] = useState('');
     
-    async function search(key) {
-     console.warn(key);
-     let result = fetch("/api/search/"+key);
-     result = await result.json(); 
-     setData(result);
-      
+    useEffect(() => {
+      getAllFicheComptes();
+    }, []);
+
+    const getAllFicheComptes = async () => {
+        try {
+              await axios.get('/api/all-fiche-comptes/')
+              .then( res => {
+                setFicheComptes(res.data.fiche_tenues);  
+                console.log("OK");
+              })
+        } catch(error){
+              console.log(error);
+        }
     }
-
-
+     
     return (
+      
         <div className="page d-flex">
         {/* Start Sidebar */}
         <Sidebar />
@@ -26,8 +37,21 @@ function SearchFicheTenuCompte () {
             {/* <!-- End Head --> */}
             <div className="container">
                   
-                  <h1> Search Compte</h1>
-                  <input type="text" placeholder="Search Here" onChange={(e)=>search(e.target.value)} className="form-control" />
+                  <h1> Rechercher Compte</h1>
+                  <input type="text" placeholder="Search Here" value={searchFicheComptes}  onChange={(e) => setSearchFicheComptes(e.target.value)} className="form-control"  />
+
+                  <div className="">
+                      { 
+                         ficheComptes.filter(fiche => fiche.compte_bancaire_num.includes(searchFicheComptes)) 
+                         .map(fiche => (
+                          <div key={fiche.id}>
+                             <p>{fiche.compte_bancaire_num}</p>  
+                          </div>
+                         )
+                                               
+                         )
+                      }
+                  </div>
             </div>
         </div>
     </div>
