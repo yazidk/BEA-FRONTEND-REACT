@@ -1,11 +1,7 @@
 import React , {useEffect, useState} from "react";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Head from "../../components/head/Head";
-<<<<<<< HEAD
-function SearchFicheTenuCompte () {
-     
-    const [data , setData] = useState([]); 
-=======
+
 import axios from "axios";
 
 function SearchFicheTenuCompte () {
@@ -13,7 +9,7 @@ function SearchFicheTenuCompte () {
    
     const [ficheComptes , setFicheComptes] = useState([]);
     const [searchFicheComptes , setSearchFicheComptes] = useState('');
->>>>>>> origin/yazid_home
+
     
     useEffect(() => {
       getAllFicheComptes();
