@@ -1,10 +1,9 @@
 import React , {useState} from "react";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Head from "../../components/head/Head";
-import { getSuggestedQuery } from "@testing-library/react";
 function SearchFicheTenuCompte () {
      
-    const [data , setData] = useState([]);
+    const [data , setData] = useState([]); 
     
     async function search(key) {
      console.warn(key);
