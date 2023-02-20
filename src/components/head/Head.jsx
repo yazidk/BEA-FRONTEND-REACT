@@ -1,19 +1,34 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+
+import {useNavigate} from "react-router-dom";
+import axios from 'axios';
+import swal from 'sweetalert';
 import './head.css'
 export default function Head() {
-     
-    var autLogout  = '' ;
+    const navigate = useNavigate();
+
+    const logoutSubmit = (e) => {
+      e.preventDefault();
+      axios.post('/api/logout').then(res => {
+         if (res.data.status === 200) {
+            localStorage.removeItem('auth_token');
+            localStorage.removeItem('auth_name');
+            swal("Success" , res.data.message , "success" );
+            navigate('/login');
+         }
+      })
+    }
+    var authLogout =  '';
     if(localStorage.getItem('auth_token')){
-        autLogout = (
-            <button> Logout</button>
+        authLogout =  (
+            <button className='' onClick={logoutSubmit}> Logout </button>
         )
     }
     return (
         <div className="head bg-white p-15 between-flex">
             <div className="search p-relative">
                 <input className="p-10" type="search" placeholder="Rechercher" />
-                {autLogout}
+                {authLogout}
             </div>
             <div className="icons d-flex align-center">
                 <span className="notification p-relative">

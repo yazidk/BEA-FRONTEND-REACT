@@ -29,14 +29,11 @@ export default function Login() {
       axios.post('/api/login' , data ).then( res => {
          
           if(res.data.status === 200) {
-                  console.log(res.data.token)
-                  console.log(res.data.username)
+                 
                   localStorage.setItem('auth_token' , res.data.token);
                   localStorage.setItem('auth_name' , res.data.username);
-                  
+                  navigate("/ajouter-fiche");
                   swal("Success" , res.data.message , "success");
-                 
-                      navigate('/');
           }
          
           
@@ -56,10 +53,10 @@ export default function Login() {
                 <form className="loginForm" onSubmit={loginSubmit}>
                     <label>Username</label>
                     <input className='loginInput' type="email" name="email" onChange={handleInput} value={loginInput.email} placeholder='Username' />
-                    <span>{loginInput.error_list.email}</span>
+                   
                     <label>Password</label>
                     <input className='loginInput' type="password" name="password" onChange={handleInput} value={loginInput.password} placeholder='Password' />
-                    <span>{loginInput.error_list.password}</span>
+                    
                     <button type="submit" className="loginButton"> Login</button> 
                 </form>
             
